@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Your other head elements -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+
+    </figure>
+	
+    <script th:inline="javascript">
+
+        Highcharts.chart('container', {
+
+    title: {
+        text: 'Country impact graph',
+        align: 'left'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of impact'
+        }
+    },
+
+    xAxis: {
+        categories: [[${data}]],
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+
+    series: [{
+        data: [[${count}]]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+
+    </script>
+</body>
+</html>
